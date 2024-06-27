@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:your_app_test/src/theme/get_theme_color.dart';
-import 'package:your_app_test/src/theme/palette.dart';
 
 class MainScaffold extends StatelessWidget {
   final bool? isGradient;

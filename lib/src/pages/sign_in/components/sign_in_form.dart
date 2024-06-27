@@ -260,7 +260,7 @@ class AppButton extends StatelessWidget {
 
   ButtonStyle disableStyle() {
     return ButtonStyle(
-        shape: MaterialStateProperty.resolveWith((states) {
+        shape: WidgetStateProperty.resolveWith((states) {
           return DecoratedOutlinedBorder(
               backgroundGradient: LinearGradient(
                   begin: Alignment.bottomLeft,
@@ -272,6 +272,6 @@ class AppButton extends StatelessWidget {
               child: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)));
         }),
-        backgroundColor: const MaterialStatePropertyAll(Colors.transparent));
+        backgroundColor: const WidgetStatePropertyAll(Colors.transparent));
   }
 }

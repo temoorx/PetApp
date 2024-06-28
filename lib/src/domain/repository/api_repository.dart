@@ -19,4 +19,12 @@ abstract class ApiRepository extends Repository {
   Future<Result<BaseResponseDto>> forgetPassword({required String email});
 
   Future<Result<BaseResponseDto>> verifyEmail({required String email});
+
+//Firebase Auth with email and pass
+
+
+  // Future<Result<BaseResponseDto>> signUpWithFirebase(
+  //     {required String email, required String password});
+
+
 }

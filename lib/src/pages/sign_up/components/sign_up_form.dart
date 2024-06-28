@@ -227,9 +227,9 @@ class _SignUpFormState extends State<SignUpForm> {
               initial: () {
                 return null;
               },
-              loaded: (token) {
-                ToastComponent2(context).showToast(context,
-                    'User Created successfully please check your email');
+              loaded: (response) {
+                ToastComponent2(context)
+                    .showToast(context, 'Account created successfully');
                 return Navigator.pop(context);
               },
             ),

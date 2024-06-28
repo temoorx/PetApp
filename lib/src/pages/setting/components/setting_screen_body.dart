@@ -78,7 +78,7 @@ class SettingScreenBody extends StatelessWidget {
               onTap: () {
                 getIt
                     .get<SharedPreferencesUtil>()
-                    .removeValue(SharedPreferenceConstants.apiAuthToken)
+                    .removeValue(SharedPreferenceConstants.userId)
                     .then((value) async => await context.router.pushAndPopUntil(
                         predicate: (route) => false, const SignInRoute()));
               },

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:logger/logger.dart';
 import 'package:your_app_test/src/data/dto/base_response_dto.dart';
@@ -7,7 +8,6 @@ import 'package:your_app_test/src/data/dto/pay_bills_dto.dart';
 import 'package:your_app_test/src/data/dto/token_dto.dart';
 import 'package:your_app_test/src/domain/domain.dart';
 import 'package:your_app_test/src/domain/status/readings_status.dart';
-
 
 class ObjectMapper {
   final Logger logger;
@@ -33,8 +33,6 @@ class ObjectMapper {
     }
     return readingsStatus;
   }
-
-
 
   Error toError(Exception exception) {
     Error error;
@@ -107,13 +105,12 @@ class ObjectMapper {
   }
 
   BaseResponseDto toforgetPassword(BaseResponseDto dto) {
-    return BaseResponseDto(data: dto.data, message: dto.data['message']);
+    return BaseResponseDto(data: dto.data, message: dto.data['message']); 
   }
 
   BaseResponseDto toVerifyEmail(BaseResponseDto dto) {
     return BaseResponseDto(data: dto.data, message: dto.data['message']);
   }
-
 
   BaseResponseDto toUpdateUser(BaseResponseDto dto) {
     return BaseResponseDto(data: dto.data, message: dto.data['message']);
@@ -123,4 +120,7 @@ class ObjectMapper {
     return BaseResponseDto(data: dto.data, message: dto.data['message']);
   }
 
+  UserCredential toSignUpWithFirebase(UserCredential response) {
+    return response;
+  }
 }

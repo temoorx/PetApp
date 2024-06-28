@@ -1,150 +1,148 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:your_app_test/src/components/main_scaffold.dart';
-import 'package:your_app_test/src/constant/assets_constants.dart';
-import 'package:your_app_test/src/theme/palette.dart';
-import 'package:your_app_test/src/constant/route_constants.dart';
-import 'package:your_app_test/src/flavors/flavour_banner.dart';
+import 'package:your_app_test/src/constant/shared_preference_constants.dart';
+import 'package:your_app_test/src/di/injector.dart';
+import 'package:your_app_test/src/pages/home/compoenents/evens_tab.dart';
+import 'package:your_app_test/src/route/app_router.dart';
+import 'package:your_app_test/src/util/shared_preferences_util.dart';
 
 @RoutePage()
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    super.key,
-  });
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return flavorBanner(
-        show: true,
-        child: MainScaffold(
-            isGradient: false,
-            appBar: const AppBarWidget(
-              title: '@johndoe',
-            ),
-            body: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 190,
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              AssetsConstants.profileImage,
-                            )),
-                        color: const Color(
-                          0xff162329,
-                        ),
-                        borderRadius: BorderRadius.circular(16)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            '@johndoe, 28',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                                fontSize: 16,
-                                height: 1.936,
-                                letterSpacing: -0.23),
-                          ),
-                          const Text(
-                            'Male',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                height: 1.573,
-                                letterSpacing: -0.23),
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                width: 97,
-                                height: 36,
-                                decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.6),
-                                    borderRadius: BorderRadius.circular(100)),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ))
-        // BlocProvider(
-        //     create: (context) => getIt.get<AnimatedDrawerCubit>()
-        //       ..getDashBoardOverview(context,
-        //           pageController: PageController(initialPage: 0),
-        //           advancedDrawerController: AdvancedDrawerController()),
-        //     child: BlocBuilder<AnimatedDrawerCubit, AnimatedDrawerState>(
-        //       builder: (context, state) => state.maybeWhen(
-        //         loaded: (
-        //           pageControllerLoaded,
-        //         ) =>
-        //             AnimatedDrawerAfterLoadedState(
-        //           color: getThemeColor(context),
-        //         ),
-        //         animatedDrawerIndexUpdated: (
-        //           index,
-        //           isOpen,
-        //         ) {
-        //           return AnimatedDrawerAfterLoadedState(
-        //               color: getThemeColor(context));
-        //         },
-        //         error: (error) => RetryButton(
-        //           onTap: () => context
-        //               .read<AnimatedDrawerCubit>()
-        //               .getDashBoardOverview(context,
-        //                   pageController: PageController(initialPage: 0),
-        //                   advancedDrawerController: AdvancedDrawerController()),
-        //         ),
-        //         loading: () => const AppProgressIndicator(),
-        //         orElse: () => const SizedBox.shrink(),
-        //       ),
-        //     )),
-
-        );
-  }
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({
-    super.key,
-    required this.title,
-  });
-  final String title;
+class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController _eventNameController = TextEditingController();
+  final TextEditingController _eventDescriptionController =
+      TextEditingController();
+
+  Future<void> _saveEvent() async {
+    if (_eventNameController.text.isEmpty ||
+        _eventDescriptionController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please fill out all fields')),
+      );
+      return;
+    }
+
+    try {
+      await FirebaseFirestore.instance.collection('events').add({
+        'name': _eventNameController.text,
+        'description': _eventDescriptionController.text,
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+      _eventNameController.clear();
+      _eventDescriptionController.clear();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Event saved successfully')),
+      );
+    } catch (e) {
+      debugPrint('Error saving event: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error saving event')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      title: Text(
-        title,
-        style: const TextStyle(
-            fontWeight: FontWeight.w600, fontSize: 14, color: Colors.white),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Event App'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+                getIt
+                    .get<SharedPreferencesUtil>()
+                    .removeValue(SharedPreferenceConstants.userId)
+                    .then((value) async => await context.router.pushAndPopUntil(
+                        predicate: (route) => false, const SignInRoute()));
+              },
+            ),
+          ],
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                  child: Icon(
+                Icons.add,
+                color: Colors.white,
+              )),
+              Tab(
+                  child: Icon(
+                Icons.list,
+                color: Colors.white,
+              )),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _eventNameController,
+                    decoration: InputDecoration(labelText: 'Event Name'),
+                  ),
+                  TextField(
+                    controller: _eventDescriptionController,
+                    decoration: InputDecoration(labelText: 'Event Description'),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: _saveEvent,
+                    child: Text('Save Event'),
+                  ),
+                ],
+              ),
+            ),
+            EventsTab(),
+          ],
+        ),
       ),
-      centerTitle: true,
-      actions: [
-        IconButton(
-            onPressed: () {
-              context.router.pushNamed(RouteConstants.settingRoute);
-            },
-            icon: const Icon(
-              Icons.more_horiz,
-              color: Palette.white,
-              size: 30,
-            ))
-      ],
     );
   }
 }
+
+// class EventsTab extends StatelessWidget {
+//   const EventsTab({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<QuerySnapshot>(
+//       stream: FirebaseFirestore.instance
+//           .collection('events')
+//           .orderBy('createdAt', descending: true)
+//           .snapshots(),
+//       builder: (context, snapshot) {
+//         if (snapshot.connectionState == ConnectionState.waiting) {
+//           return Center(child: CircularProgressIndicator());
+//         }
+
+//         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+//           return Center(child: Text('No events found'));
+//         }
+
+//         return ListView(
+//           children: snapshot.data!.docs.map((doc) {
+//             Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+//             return ListTile(
+//               title: Text(data['name'],
+//                   style: TextStyle(fontSize: 20, color: Colors.white)),
+//               subtitle: Text(data['description'],
+//                   style: TextStyle(fontSize: 10, color: Colors.white)),
+//             );
+//           }).toList(),
+//         );
+//       },
+//     );
+//   }
+// }

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -11,6 +13,7 @@ import 'package:your_app_test/src/core/log_filter.dart';
 import 'package:your_app_test/src/data/common/object_mapper.dart';
 import 'package:your_app_test/src/data/datasource/api/at_care_api.dart';
 import 'package:your_app_test/src/data/repository/api_repository_impl.dart';
+import 'package:your_app_test/src/data/repository/firebase_repository.dart';
 import 'package:your_app_test/src/domain/repository/api_repository.dart';
 import 'package:your_app_test/src/listeners/login_state.dart';
 import 'package:your_app_test/src/pages/forgot_password/cubit/forget_password_cubit.dart';
@@ -95,10 +98,19 @@ Future<void> _initializeData({bool enableLogging = true}) async {
         logger: getIt.get(),
       ),
     );
+
+  getIt.registerFactory<FirebaseRepository>(
+    () => FirebaseRepositoryImpl(
+      firestore: FirebaseFirestore.instance,
+      firebaseAuth: FirebaseAuth.instance,
+      objectMapper: getIt.get(),
+      logger: getIt.get(),
+    ),
+  );
+
   // add interceptor
 
   if (enableLogging) {
     dio.interceptors.add(PrettyDioLogger());
   }
 }
-

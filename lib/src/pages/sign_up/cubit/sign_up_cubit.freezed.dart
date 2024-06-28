@@ -21,7 +21,7 @@ mixin _$SignUpState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(TokenDto token) loaded,
+    required TResult Function(UserCredential user) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$SignUpState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(TokenDto token)? loaded,
+    TResult? Function(UserCredential user)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$SignUpState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(TokenDto token)? loaded,
+    TResult Function(UserCredential user)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(TokenDto token) loaded,
+    required TResult Function(UserCredential user) loaded,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(TokenDto token)? loaded,
+    TResult? Function(UserCredential user)? loaded,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(TokenDto token)? loaded,
+    TResult Function(UserCredential user)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +241,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(TokenDto token) loaded,
+    required TResult Function(UserCredential user) loaded,
   }) {
     return loading();
   }
@@ -252,7 +252,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(TokenDto token)? loaded,
+    TResult? Function(UserCredential user)? loaded,
   }) {
     return loading?.call();
   }
@@ -263,7 +263,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(TokenDto token)? loaded,
+    TResult Function(UserCredential user)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -381,7 +381,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(TokenDto token) loaded,
+    required TResult Function(UserCredential user) loaded,
   }) {
     return error(message);
   }
@@ -392,7 +392,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(TokenDto token)? loaded,
+    TResult? Function(UserCredential user)? loaded,
   }) {
     return error?.call(message);
   }
@@ -403,7 +403,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(TokenDto token)? loaded,
+    TResult Function(UserCredential user)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -465,7 +465,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TokenDto token});
+  $Res call({UserCredential user});
 }
 
 /// @nodoc
@@ -479,13 +479,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
+    Object? user = null,
   }) {
     return _then(_$LoadedImpl(
-      null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as TokenDto,
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserCredential,
     ));
   }
 }
@@ -493,14 +493,14 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(this.token);
+  const _$LoadedImpl(this.user);
 
   @override
-  final TokenDto token;
+  final UserCredential user;
 
   @override
   String toString() {
-    return 'SignUpState.loaded(token: $token)';
+    return 'SignUpState.loaded(user: $user)';
   }
 
   @override
@@ -508,11 +508,11 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -526,9 +526,9 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(TokenDto token) loaded,
+    required TResult Function(UserCredential user) loaded,
   }) {
-    return loaded(token);
+    return loaded(user);
   }
 
   @override
@@ -537,9 +537,9 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(TokenDto token)? loaded,
+    TResult? Function(UserCredential user)? loaded,
   }) {
-    return loaded?.call(token);
+    return loaded?.call(user);
   }
 
   @override
@@ -548,11 +548,11 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(TokenDto token)? loaded,
+    TResult Function(UserCredential user)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(token);
+      return loaded(user);
     }
     return orElse();
   }
@@ -596,9 +596,9 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements SignUpState {
-  const factory _Loaded(final TokenDto token) = _$LoadedImpl;
+  const factory _Loaded(final UserCredential user) = _$LoadedImpl;
 
-  TokenDto get token;
+  UserCredential get user;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;

@@ -14,6 +14,7 @@ import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_button_validation_
 
 import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_cubit.dart';
 import 'package:your_app_test/src/route/app_router.dart';
+import 'package:your_app_test/src/util/logger_utils.dart';
 import 'package:your_app_test/src/util/shared_preferences_util.dart';
 
 class SignInForm extends StatelessWidget {
@@ -80,18 +81,17 @@ class SignInButton extends StatelessWidget {
             }, error: (message) async {
               ToastComponent3(context).showToast(context, message);
               return null;
-            }, loaded: (token) async {
+            }, loaded: (id) async {
               await getIt
                   .get<SharedPreferencesUtil>()
                   .setString(
-                      SharedPreferenceConstants.apiAuthToken, token.accessToken)
+                      SharedPreferenceConstants.userId, id.user!.uid.toString())
                   .then((value) => context.router.pushAndPopUntil(
                       predicate: (route) => false, const HomeRoute()));
               return null;
             }),
         builder: (context, state) => state.maybeWhen(
-            loading: () => SignUpButtonVadationState(
-                formKey: formKey, title: StringConstants.login),
+            loading: () => const CircularProgressIndicator(),
             loaded: (token) => SignUpButtonVadationState(
                 formKey: formKey, title: StringConstants.login),
             error: (message) {
@@ -109,8 +109,21 @@ class SignInButton extends StatelessWidget {
                             .copyWith(color: Palette.redIndicatorColor))
                   ]);
             },
-            orElse: () => SignUpButtonVadationState(
-                formKey: formKey, title: StringConstants.login)));
+            orElse: () => ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      context.read<SignInCubit>().signIn();
+                    }
+                  },
+                  child: Text(
+                    StringConstants.login,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Palette.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                )));
   }
 }
 
@@ -140,7 +153,6 @@ class RegisterHereTextButton extends StatelessWidget {
                   height: 1.5,
                   fontSize: 13.0,
                   fontWeight: FontWeight.w500,
-                  foreground: Paint()..shader = linearGradientText(),
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
@@ -149,23 +161,6 @@ class RegisterHereTextButton extends StatelessWidget {
               ),
             ])));
   }
-}
-
-Shader linearGradientText() {
-  return const LinearGradient(
-    colors: [
-      Color(0xff94783E),
-      Color(0xffF3EDA6),
-      Color(0xffF8FAE5),
-      Color(0xffFFE2BE),
-      Color(0xffD5BE88),
-      Color(0xffF8FAE5),
-      Color(0xffD5BE88),
-    ], // Gradient colors
-    begin: Alignment.bottomLeft, // Gradient start position
-    end: Alignment.topRight, // Gradient end position
-  ).createShader(
-      const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)); // Text bounding box
 }
 
 class SignUpButtonVadationState extends StatelessWidget {

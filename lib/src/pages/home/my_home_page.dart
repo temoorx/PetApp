@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:your_app_test/src/components/text_field_component.dart';
 import 'package:your_app_test/src/constant/shared_preference_constants.dart';
 import 'package:your_app_test/src/di/injector.dart';
 import 'package:your_app_test/src/pages/home/compoenents/evens_tab.dart';
+import 'package:your_app_test/src/pages/is_gradient_background_component/is_gradient_background_component.dart';
+import 'package:your_app_test/src/pages/sign_in/components/primary_button.dart';
 import 'package:your_app_test/src/route/app_router.dart';
+import 'package:your_app_test/src/theme/palette.dart';
 import 'package:your_app_test/src/util/shared_preferences_util.dart';
 
 @RoutePage()
@@ -53,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Palette.white,
         appBar: AppBar(
           title: Text('Event App'),
           actions: [
@@ -88,16 +93,18 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  TextField(
+                  TextFormFieldComponent(
                     controller: _eventNameController,
-                    decoration: InputDecoration(labelText: 'Event Name'),
+                    hintText: "Event Name",
+                    onChanged: (value) {},
                   ),
-                  TextField(
+                  TextFormFieldComponent(
                     controller: _eventDescriptionController,
-                    decoration: InputDecoration(labelText: 'Event Description'),
+                    hintText: "Event Description",
+                    onChanged: (value) {},
                   ),
                   SizedBox(height: 20),
-                  ElevatedButton(
+                  PrimaryButton(
                     onPressed: _saveEvent,
                     child: Text('Save Event'),
                   ),

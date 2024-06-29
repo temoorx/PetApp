@@ -56,12 +56,17 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.isLabel == true)
-          Text(
-            widget.label ?? '',
-            style: const TextStyle(
-              color: Palette.primaryTextColor,
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10,
+            ),
+            child: Text(
+              widget.label ?? '',
+              style: const TextStyle(
+                color: Palette.primaryTextColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         Padding(

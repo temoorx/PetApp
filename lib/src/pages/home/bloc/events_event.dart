@@ -1,6 +1,8 @@
-part of 'events_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-@freezed
-class EventsEvent with _$EventsEvent {
-  const factory EventsEvent.fetchEvents() = FetchEvents;
+abstract class EventsEvent extends Equatable {
+  @override
+  List<Object> get props => [];
 }
+
+class LoadEvents extends EventsEvent {}

@@ -1,9 +1,29 @@
-part of 'events_bloc.dart';
 
-@freezed
-class EventsState with _$EventsState {
-  const factory EventsState.initial() = Initial;
-  const factory EventsState.loading() = Loading;
-  const factory EventsState.loaded(List<DocumentSnapshot> events) = Loaded;
-  const factory EventsState.error(String message) = Error;
+import 'package:equatable/equatable.dart';
+
+abstract class EventsState extends Equatable {
+  @override
+  List<Object> get props => [];
 }
+
+class EventsLoading extends EventsState {}
+
+class EventsLoaded extends EventsState {
+  final List<Map<String, dynamic>> events;
+
+  EventsLoaded(this.events);
+
+  @override
+  List<Object> get props => [events];
+}
+
+class EventsError extends EventsState {
+  final String message;
+
+  EventsError(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
+class EventsEmpty extends EventsState {}

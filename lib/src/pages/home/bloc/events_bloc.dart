@@ -1,42 +1,39 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:your_app_test/src/pages/home/bloc/events_event.dart';
+import 'package:your_app_test/src/pages/home/bloc/events_state.dart';
 
-part 'events_bloc.freezed.dart';
-part 'events_event.dart';
-part 'events_state.dart';
+import 'package:bloc/bloc.dart';
 
 class EventsBloc extends Bloc<EventsEvent, EventsState> {
-  EventsBloc() : super(const EventsState.initial());
+  StreamSubscription? _eventsSubscription;
 
-  Stream<EventsState> mapEventToState(EventsEvent event) async* {
-    yield* event.map(
-      fetchEvents: (e) async* {
-        yield const EventsState.loading();
-        try {
-          final events = await _fetchEventsFromFirestore();
-          yield EventsState.loaded(events);
-        } catch (e) {
-          yield EventsState.error('Failed to fetch events');
+  EventsBloc() : super(EventsLoading()) {
+    on<LoadEvents>((event, emit) {
+      _eventsSubscription?.cancel();
+      _eventsSubscription = FirebaseFirestore.instance
+          .collection('events')
+          .orderBy('createdAt', descending: true)
+          .snapshots()
+          .listen((snapshot) {
+        if (snapshot.docs.isEmpty) {
+          emit(EventsEmpty());
+        } else {
+          List<Map<String, dynamic>> events =
+              snapshot.docs.map((doc) => doc.data()).toList();
+          emit(EventsLoaded(events));
         }
-      },
-    );
+      }, onError: (error) {
+        emit(EventsError('Error loading events'));
+      });
+    });
   }
 
-  Future<List<DocumentSnapshot>> _fetchEventsFromFirestore() async {
-    // Initialize Firebase app if not already initialized
-    await Firebase.initializeApp();
-
-    // Fetch events from Firestore
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('events')
-        .orderBy('createdAt', descending: true)
-        .get();
-
-    return querySnapshot.docs;
+  @override
+  Future<void> close() {
+    _eventsSubscription?.cancel();
+    return super.close();
   }
 }

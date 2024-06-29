@@ -8,7 +8,7 @@ import 'package:your_app_test/src/di/injector.dart';
 import 'package:your_app_test/src/flavors/flavors.dart';
 import 'package:your_app_test/src/pages/forgot_password/cubit/forget_password_cubit.dart';
 import 'package:your_app_test/src/pages/home/bloc/events_bloc.dart';
-import 'package:your_app_test/src/pages/home/compoenents/evens_tab.dart';
+import 'package:your_app_test/src/pages/home/cubit/add_events_cubit.dart';
 import 'package:your_app_test/src/pages/is_gradient_background_component/cubit/is_gradient_background_cubit.dart';
 import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_button_validation_cubit.dart';
 
@@ -48,6 +48,7 @@ class App extends StatelessWidget {
               ),
               BlocProvider(create: (context) => IsGradientBackgroundCubit()),
               BlocProvider(create: (context) => EventsBloc()),
+              BlocProvider(create: (context) => AddEventsCubit()),
             ],
             child: MaterialApp.router(
               key: navigationService?.navigatorKey,

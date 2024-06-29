@@ -89,6 +89,8 @@ class AssetsConstants {
 
   static const String backgroundImage = 'assets/images/background_image.jpg';
 
+  static const String placeholderImage = 'assets/images/placeHolder.png';
+
   static const String profilefilledIcon = 'assets/icon/profilefilled.png';
   static const String billIcon = 'assets/icon/bill.png';
   static const String billfilledIcon = 'assets/icon/filledbillicon.png';

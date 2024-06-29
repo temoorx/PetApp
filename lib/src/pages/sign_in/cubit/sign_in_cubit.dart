@@ -2,11 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:your_app_test/src/data/dto/base_response_dto.dart';
-import 'package:your_app_test/src/data/dto/token_dto.dart';
 import 'package:your_app_test/src/data/repository/firebase_repository.dart';
 import 'package:your_app_test/src/domain/common/result.dart';
-import 'package:your_app_test/src/domain/repository/api_repository.dart';
 import 'package:your_app_test/src/util/logger_utils.dart';
 part 'sign_in_cubit.freezed.dart';
 

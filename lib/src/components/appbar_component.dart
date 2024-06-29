@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:your_app_test/src/constant/assets_constants.dart';
 import 'package:your_app_test/src/theme/palette.dart';
 import 'package:your_app_test/src/theme/font_constants.dart';
 import 'package:your_app_test/src/constant/route_constants.dart';
@@ -39,9 +38,7 @@ class AppBarcomponent extends StatelessWidget {
             borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(22),
                 bottomRight: Radius.circular(22)),
-            image: const DecorationImage(
-                image: AssetImage(AssetsConstants.appBarbgImage),
-                fit: BoxFit.cover),
+            
             // color: appBarColor ?? ColorConstants.primaryColor,
             boxShadow: appBarShadoow ?? []),
         child: AppBar(

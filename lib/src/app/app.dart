@@ -6,7 +6,6 @@ import 'package:your_app_test/main.dart';
 import 'package:your_app_test/src/app/restart_widget.dart';
 import 'package:your_app_test/src/di/injector.dart';
 import 'package:your_app_test/src/flavors/flavors.dart';
-import 'package:your_app_test/src/pages/forgot_password/cubit/forget_password_cubit.dart';
 import 'package:your_app_test/src/pages/home/bloc/events_bloc.dart';
 import 'package:your_app_test/src/pages/home/cubit/add_events_cubit.dart';
 import 'package:your_app_test/src/pages/is_gradient_background_component/cubit/is_gradient_background_cubit.dart';
@@ -15,9 +14,7 @@ import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_button_validation_
 import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_cubit.dart';
 import 'package:your_app_test/src/pages/sign_up/cubit/sign_up_cubit.dart';
 
-import 'package:your_app_test/src/pages/verify_email/cubit/verify_email_cubit.dart';
 import 'package:your_app_test/src/route/app_router.dart';
-import 'package:your_app_test/src/theme/dark_theme_data.dart';
 import 'package:your_app_test/src/theme/light_theme_data.dart';
 import 'package:your_app_test/src/theme/theme.dart';
 
@@ -38,14 +35,10 @@ class App extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => SignInCubit(getIt.get()),
-              ),
-              BlocProvider(create: (context) => VerifyEmailCubit(getIt.get())),
-              BlocProvider(
+              ),              BlocProvider(
                 create: (context) => SignUpCubit(getIt.get()),
               ),
-              BlocProvider(
-                create: (context) => ForgetPasswordCubit(getIt.get()),
-              ),
+             
               BlocProvider(create: (context) => IsGradientBackgroundCubit()),
               BlocProvider(create: (context) => EventsBloc()),
               BlocProvider(create: (context) => AddEventsCubit()),
@@ -61,7 +54,7 @@ class App extends StatelessWidget {
               debugShowMaterialGrid: false,
               debugShowCheckedModeBanner: false,
               themeMode: theme.currentTheme(),
-              darkTheme: darkThemeData(theme),
+              darkTheme: lightThemeData(theme),
               title: F.title,
               theme: lightThemeData(theme),
             ),

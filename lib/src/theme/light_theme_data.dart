@@ -1,44 +1,38 @@
-import 'package:control_style/control_style.dart';
 import 'package:flutter/material.dart';
 import 'package:your_app_test/src/theme/palette.dart';
 import 'package:your_app_test/src/style/font_style.constant.dart';
 import 'package:your_app_test/src/theme/lighten_darken_color.dart';
 import 'package:your_app_test/src/theme/theme.dart';
 
-ThemeData lightThemeData(MyTheme theme, {Color? color}) {
+ThemeData lightThemeData(MyTheme theme) {
   return ThemeData(
+    drawerTheme: const DrawerThemeData(
+        backgroundColor: Palette.bgColorLight, elevation: 0),
     useMaterial3: true,
-    colorSchemeSeed: color ?? theme.getColor(),
+    colorSchemeSeed: theme.getColor(),
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Palette.bgColorDark,
-    appBarTheme: AppBarTheme(
-        backgroundColor: darken(theme.getColor(), 0.35),
-        foregroundColor: Palette.white),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
+        textStyle: WidgetStateProperty.resolveWith((states) {
+          return FontStylesConstants.gilroy(
+              fontSize: 16, color: darken(theme.getColor(), 0.35));
+        }),
         shape: WidgetStateProperty.resolveWith((states) {
-          return DecoratedOutlinedBorder(
-            backgroundGradient: LinearGradient(colors: [
-              Colors.blue.withOpacity(0.5),
-              Colors.blue.withOpacity(0.2)
-            ]),
-            child:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          return RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(90),
           );
         }),
         fixedSize: const WidgetStatePropertyAll(Size.fromHeight(60)),
         maximumSize: const WidgetStatePropertyAll(Size.fromHeight(60)),
         minimumSize: const WidgetStatePropertyAll(Size.fromHeight(60)),
-        backgroundColor: WidgetStatePropertyAll(
-          theme.getColor(),
+        backgroundColor: const WidgetStatePropertyAll(
+          Colors.transparent,
         ),
         foregroundColor: const WidgetStatePropertyAll(
           Palette.white,
         ),
       ),
     ),
-    drawerTheme: const DrawerThemeData(
-        backgroundColor: Colors.transparent, elevation: 0),
     buttonTheme: ButtonThemeData(
       buttonColor: theme.getColor(),
       textTheme: ButtonTextTheme.accent,
@@ -50,33 +44,36 @@ ThemeData lightThemeData(MyTheme theme, {Color? color}) {
       ),
     ),
     textTheme: TextTheme(
-      titleSmall: FontStylesConstants.gilroy(fontSize: 8, color: Palette.white),
-      titleMedium:
-          FontStylesConstants.gilroy(fontSize: 10, color: Palette.white),
-      bodySmall: FontStylesConstants.gilroy(fontSize: 14, color: Palette.white),
-      bodyMedium:
-          FontStylesConstants.gilroy(fontSize: 16, color: Palette.white),
-      bodyLarge: FontStylesConstants.gilroy(fontSize: 18, color: Palette.white),
-      labelSmall:
-          FontStylesConstants.gilroy(fontSize: 12, color: Palette.white),
-      titleLarge:
-          FontStylesConstants.gilroy(fontSize: 20, color: Palette.white),
-      labelMedium:
-          FontStylesConstants.gilroy(fontSize: 22, color: Palette.white),
-      labelLarge:
-          FontStylesConstants.gilroy(fontSize: 24, color: Palette.white),
-      headlineSmall:
-          FontStylesConstants.gilroy(fontSize: 26, color: Palette.white),
-      headlineMedium:
-          FontStylesConstants.gilroy(fontSize: 28, color: Palette.white),
-      headlineLarge:
-          FontStylesConstants.gilroy(fontSize: 30, color: Palette.white),
-      displaySmall:
-          FontStylesConstants.gilroy(fontSize: 32, color: Palette.white),
-      displayMedium:
-          FontStylesConstants.gilroy(fontSize: 34, color: Palette.white),
-      displayLarge:
-          FontStylesConstants.gilroy(fontSize: 36, color: Palette.white),
+      titleSmall: FontStylesConstants.gilroy(
+          fontSize: 8, color: darken(theme.getColor(), 0.35)),
+      titleMedium: FontStylesConstants.gilroy(
+          fontSize: 10, color: darken(theme.getColor(), 0.35)),
+      bodySmall: FontStylesConstants.gilroy(
+          fontSize: 14, color: darken(theme.getColor(), 0.35)),
+      bodyMedium: FontStylesConstants.gilroy(
+          fontSize: 16, color: darken(theme.getColor(), 0.35)),
+      bodyLarge: FontStylesConstants.gilroy(
+          fontSize: 18, color: darken(theme.getColor(), 0.35)),
+      labelSmall: FontStylesConstants.gilroy(
+          fontSize: 12, color: darken(theme.getColor(), 0.35)),
+      titleLarge: FontStylesConstants.gilroy(
+          fontSize: 20, color: darken(theme.getColor(), 0.35)),
+      labelMedium: FontStylesConstants.gilroy(
+          fontSize: 22, color: darken(theme.getColor(), 0.35)),
+      labelLarge: FontStylesConstants.gilroy(
+          fontSize: 24, color: darken(theme.getColor(), 0.35)),
+      headlineSmall: FontStylesConstants.gilroy(
+          fontSize: 26, color: darken(theme.getColor(), 0.35)),
+      headlineMedium: FontStylesConstants.gilroy(
+          fontSize: 28, color: darken(theme.getColor(), 0.35)),
+      headlineLarge: FontStylesConstants.gilroy(
+          fontSize: 30, color: darken(theme.getColor(), 0.35)),
+      displaySmall: FontStylesConstants.gilroy(
+          fontSize: 32, color: darken(theme.getColor(), 0.35)),
+      displayMedium: FontStylesConstants.gilroy(
+          fontSize: 34, color: darken(theme.getColor(), 0.35)),
+      displayLarge: FontStylesConstants.gilroy(
+          fontSize: 36, color: darken(theme.getColor(), 0.35)),
     ),
   );
 }

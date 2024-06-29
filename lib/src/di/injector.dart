@@ -16,12 +16,10 @@ import 'package:your_app_test/src/data/repository/api_repository_impl.dart';
 import 'package:your_app_test/src/data/repository/firebase_repository.dart';
 import 'package:your_app_test/src/domain/repository/api_repository.dart';
 import 'package:your_app_test/src/listeners/login_state.dart';
-import 'package:your_app_test/src/pages/forgot_password/cubit/forget_password_cubit.dart';
 import 'package:your_app_test/src/pages/is_gradient_background_component/cubit/is_gradient_background_cubit.dart';
 
 import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_cubit.dart';
 import 'package:your_app_test/src/pages/sign_up/cubit/sign_up_cubit.dart';
-import 'package:your_app_test/src/pages/verify_email/cubit/verify_email_cubit.dart';
 import 'package:your_app_test/src/route/app_router.dart';
 import 'package:your_app_test/src/util/shared_preferences_util.dart';
 
@@ -52,8 +50,7 @@ void _injectBlocsAndCubits() {
   getIt.registerFactory(() => IsGradientBackgroundCubit());
   getIt.registerFactory(() => SignInCubit(getIt.get()));
   getIt.registerFactory(() => SignUpCubit(getIt.get()));
-  getIt.registerFactory(() => ForgetPasswordCubit(getIt.get()));
-  getIt.registerFactory(() => VerifyEmailCubit(getIt.get()));
+
   getIt.registerLazySingleton(() => AppRouter());
 }
 

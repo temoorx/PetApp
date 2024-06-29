@@ -26,6 +26,7 @@ class AddEventsCubit extends Cubit<AddEventsState> {
       });
       eventNameController.clear();
       eventDescriptionController.clear();
+      eventInstructionController.clear();
     } catch (e) {
       emit(AddEventsState.error(e.toString()));
     }

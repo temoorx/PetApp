@@ -4,8 +4,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:logger/logger.dart';
 import 'package:your_app_test/src/data/dto/base_response_dto.dart';
 import 'package:your_app_test/src/data/dto/error_dto.dart';
-import 'package:your_app_test/src/data/dto/pay_bills_dto.dart';
-import 'package:your_app_test/src/data/dto/token_dto.dart';
 import 'package:your_app_test/src/domain/domain.dart';
 import 'package:your_app_test/src/domain/status/readings_status.dart';
 
@@ -90,18 +88,6 @@ class ObjectMapper {
       'An error has occurred. code=${error.code}, message=${error.message}',
     );
     return error;
-  }
-
-  BaseResponseDto<TokenDto> toSignIn(BaseResponseDto<TokenDto> dto) {
-    return BaseResponseDto<TokenDto>(data: dto.data, message: dto.message);
-  }
-
-  BaseResponseDto<TokenDto> toSignUp(BaseResponseDto<TokenDto> dto) {
-    return BaseResponseDto<TokenDto>(data: dto.data, message: dto.message);
-  }
-
-  BaseResponseDto<PayBillsDto> toPayBill(BaseResponseDto<PayBillsDto> dto) {
-    return BaseResponseDto<PayBillsDto>(data: dto.data, message: dto.message);
   }
 
   BaseResponseDto toforgetPassword(BaseResponseDto dto) {

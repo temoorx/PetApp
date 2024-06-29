@@ -35,10 +35,10 @@ class App extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => SignInCubit(getIt.get()),
-              ),              BlocProvider(
+              ),
+              BlocProvider(
                 create: (context) => SignUpCubit(getIt.get()),
               ),
-             
               BlocProvider(create: (context) => IsGradientBackgroundCubit()),
               BlocProvider(create: (context) => EventsBloc()),
               BlocProvider(create: (context) => AddEventsCubit()),

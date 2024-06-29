@@ -11,7 +11,7 @@ import 'package:uuid/uuid.dart';
 import 'package:your_app_test/src/constant/http_constants.dart';
 import 'package:your_app_test/src/core/log_filter.dart';
 import 'package:your_app_test/src/data/common/object_mapper.dart';
-import 'package:your_app_test/src/data/datasource/api/at_care_api.dart';
+import 'package:your_app_test/src/data/datasource/api/api_service.dart';
 import 'package:your_app_test/src/data/repository/api_repository_impl.dart';
 import 'package:your_app_test/src/data/repository/firebase_repository.dart';
 import 'package:your_app_test/src/domain/repository/api_repository.dart';
@@ -87,7 +87,7 @@ Future<void> _initializeData({bool enableLogging = true}) async {
 
   // inject dependencies
   getIt
-    ..registerSingleton(YouAppApi(dio))
+    ..registerSingleton(ApiService(dio))
     ..registerFactory<ApiRepository>(
       () => ApiRepositoryImpl(
         youAppApi: getIt.get(),

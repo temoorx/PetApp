@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:your_app_test/src/constant/route_constants.dart';
 
 import 'package:your_app_test/src/constant/shared_preference_constants.dart';
 import 'package:your_app_test/src/di/injector.dart';
-import 'package:your_app_test/src/pages/home/compoenents/add_events.dart';
 import 'package:your_app_test/src/pages/home/compoenents/evens_tab.dart';
 
 import 'package:your_app_test/src/route/app_router.dart';
@@ -88,11 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Palette.black,
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => AddEventScreen(),
-              ),
-            );
+            context.router.pushNamed(RouteConstants.addEventRoute);
           },
           child: Icon(Icons.add, color: Palette.white),
         ),

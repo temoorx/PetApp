@@ -15,34 +15,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    ForgotPasswordRoute.name: (routeData) {
+    AddEventRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ForgotPasswordScreen(),
+        child: const AddEventScreen(),
       );
     },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomeScreen(),
-      );
-    },
-    NewPasswordRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const NewPasswordScreen(),
-      );
-    },
-    OTPRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const OTPScreen(),
-      );
-    },
-    SettingsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SettingsScreen(),
       );
     },
     SignInRoute.name: (routeData) {
@@ -63,35 +45,19 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashScreen(),
       );
     },
-    TermsConditionsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const TermsConditionsScreen(),
-      );
-    },
-    VerifyEmailRoute.name: (routeData) {
-      final args = routeData.argsAs<VerifyEmailRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: VerifyEmailScreen(
-          key: args.key,
-          email: args.email,
-        ),
-      );
-    },
   };
 }
 
 /// generated route for
-/// [ForgotPasswordScreen]
-class ForgotPasswordRoute extends PageRouteInfo<void> {
-  const ForgotPasswordRoute({List<PageRouteInfo>? children})
+/// [AddEventScreen]
+class AddEventRoute extends PageRouteInfo<void> {
+  const AddEventRoute({List<PageRouteInfo>? children})
       : super(
-          ForgotPasswordRoute.name,
+          AddEventRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ForgotPasswordRoute';
+  static const String name = 'AddEventRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -106,48 +72,6 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [NewPasswordScreen]
-class NewPasswordRoute extends PageRouteInfo<void> {
-  const NewPasswordRoute({List<PageRouteInfo>? children})
-      : super(
-          NewPasswordRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'NewPasswordRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [OTPScreen]
-class OTPRoute extends PageRouteInfo<void> {
-  const OTPRoute({List<PageRouteInfo>? children})
-      : super(
-          OTPRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'OTPRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [SettingsScreen]
-class SettingsRoute extends PageRouteInfo<void> {
-  const SettingsRoute({List<PageRouteInfo>? children})
-      : super(
-          SettingsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SettingsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -192,56 +116,4 @@ class SplashRoute extends PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [TermsConditionsScreen]
-class TermsConditionsRoute extends PageRouteInfo<void> {
-  const TermsConditionsRoute({List<PageRouteInfo>? children})
-      : super(
-          TermsConditionsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TermsConditionsRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [VerifyEmailScreen]
-class VerifyEmailRoute extends PageRouteInfo<VerifyEmailRouteArgs> {
-  VerifyEmailRoute({
-    Key? key,
-    required String email,
-    List<PageRouteInfo>? children,
-  }) : super(
-          VerifyEmailRoute.name,
-          args: VerifyEmailRouteArgs(
-            key: key,
-            email: email,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'VerifyEmailRoute';
-
-  static const PageInfo<VerifyEmailRouteArgs> page =
-      PageInfo<VerifyEmailRouteArgs>(name);
-}
-
-class VerifyEmailRouteArgs {
-  const VerifyEmailRouteArgs({
-    this.key,
-    required this.email,
-  });
-
-  final Key? key;
-
-  final String email;
-
-  @override
-  String toString() {
-    return 'VerifyEmailRouteArgs{key: $key, email: $email}';
-  }
 }

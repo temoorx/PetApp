@@ -1,9 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:your_app_test/src/constant/route_constants.dart';
 import 'package:your_app_test/src/theme/get_theme_color.dart';
 import 'package:your_app_test/src/theme/lighten_darken_color.dart';
-import 'package:your_app_test/src/util/navigation_util.dart';
 
 class ConsentForm extends StatefulWidget {
   const ConsentForm({super.key});
@@ -42,13 +40,7 @@ class _ConsentFormState extends State<ConsentForm> {
                     .textTheme
                     .bodySmall!
                     .copyWith(color: Colors.lightBlue),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    NavigationUtil.push(
-                      context,
-                      RouteConstants.consentFormRoute,
-                    );
-                  },
+                recognizer: TapGestureRecognizer()..onTap = () {},
               ),
             ],
           ),

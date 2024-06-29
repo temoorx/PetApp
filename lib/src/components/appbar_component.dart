@@ -1,8 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:your_app_test/src/theme/palette.dart';
 import 'package:your_app_test/src/theme/font_constants.dart';
-import 'package:your_app_test/src/constant/route_constants.dart';
 import 'package:your_app_test/src/theme/get_theme_color.dart';
 import 'package:your_app_test/src/theme/lighten_darken_color.dart';
 import 'package:your_app_test/src/util/navigation_util.dart';
@@ -38,7 +36,7 @@ class AppBarcomponent extends StatelessWidget {
             borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(22),
                 bottomRight: Radius.circular(22)),
-            
+
             // color: appBarColor ?? ColorConstants.primaryColor,
             boxShadow: appBarShadoow ?? []),
         child: AppBar(
@@ -47,8 +45,7 @@ class AppBarcomponent extends StatelessWidget {
             actions: !isBackAppBar
                 ? [
                     InkWell(
-                      onTap: () => context.router
-                          .pushNamed(RouteConstants.notificationRoute),
+                      onTap: () {},
                       child: const Padding(
                         padding: EdgeInsets.all(15),
                         child: Padding(

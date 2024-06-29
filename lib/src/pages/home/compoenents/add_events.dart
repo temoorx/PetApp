@@ -1,11 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_app_test/src/components/text_field_component.dart';
 import 'package:your_app_test/src/pages/sign_in/components/primary_button.dart';
 import 'package:your_app_test/src/theme/palette.dart';
 
-import '../cubit/add_events_cubit.dart';
+import 'package:your_app_test/src/pages/home/cubit/add_events_cubit.dart';
 
+@RoutePage()
 class AddEventScreen extends StatelessWidget {
   const AddEventScreen({Key? key}) : super(key: key);
 
@@ -34,7 +36,7 @@ class AddEventScreen extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text("Event saved successfully")),
               );
-              Navigator.of(context).pop(); // Go back to the previous screen
+              Navigator.of(context).pop();
               return null;
             },
             error: (message) {

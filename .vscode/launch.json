@@ -8,6 +8,7 @@
       "name": "your_app_test",
       "request": "launch",
       "type": "dart",
+      "program": "lib/src/flavors/main.dart",
       "args": [ "--flavor", "staging" ]
     },
     {

@@ -4,6 +4,7 @@ import 'package:your_app_test/src/pages/home/home_screen.dart';
 import 'package:your_app_test/src/pages/sign_in/sign_in_screen.dart';
 import 'package:your_app_test/src/pages/sign_up/sign_up_screen.dart';
 import 'package:your_app_test/src/pages/splash/splash_screen.dart';
+import 'package:your_app_test/src/pages/home/compoenents/add_events.dart';
 
 part 'app_router.gr.dart';
 

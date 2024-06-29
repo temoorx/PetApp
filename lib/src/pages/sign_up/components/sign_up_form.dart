@@ -30,26 +30,34 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: [
-          const SizedBox(height: 20),
+          const SizedBox(height: 40),
           TextFormFieldComponent(
             onChanged: (value) {},
             borderRadius: 12,
             controller: _emailController,
             hintText: 'Enter Email',
+            isLabel: true,
+            label: 'Username / Email',
             textInputType: TextInputType.emailAddress,
           ),
+          SizedBox(height: 20),
           TextFormFieldComponent(
             onChanged: (value) {},
             borderRadius: 12,
             controller: _passwordController,
+            isLabel: true,
+            label: 'Password',
             hintText: 'Password',
             isPassword: true,
             textInputType: TextInputType.visiblePassword,
           ),
+          SizedBox(height: 20),
           TextFormFieldComponent(
             onChanged: (value) {},
             borderRadius: 12,
             controller: _confirmPasswordController,
+            isLabel: true,
+            label: 'Confirm Password',
             hintText: 'Confirm Password',
             isPassword: true,
             textInputType: TextInputType.visiblePassword,
@@ -202,27 +210,21 @@ class _SignUpFormState extends State<SignUpForm> {
                 ],
               ),
             ),
-            listener: (context, state) => state.maybeWhen(
-              orElse: () {
-                return null;
-              },
-              error: (message) {
-                ToastComponent3(context).showToast(context, message);
-                return null;
-              },
-              initial: () {
-                return null;
-              },
-              loaded: (response) {
-                ToastComponent2(context)
-                    .showToast(context, 'Account created successfully');
-                return Navigator.pop(context);
-              }
-            ),
+            listener: (context, state) => state.maybeWhen(orElse: () {
+              return null;
+            }, error: (message) {
+              ToastComponent3(context).showToast(context, message);
+              return null;
+            }, initial: () {
+              return null;
+            }, loaded: (response) {
+              ToastComponent2(context)
+                  .showToast(context, 'Account created successfully');
+              return Navigator.pop(context);
+            }),
           ),
           const SizedBox(height: 20),
-          const Align(
-              alignment: Alignment.bottomRight, child: AlreadyAccount()),
+          const Align(alignment: Alignment.center, child: AlreadyAccount()),
           const SizedBox(height: 20),
         ],
       ),

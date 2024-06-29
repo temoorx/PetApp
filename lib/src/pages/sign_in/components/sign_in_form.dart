@@ -35,15 +35,19 @@ class SignInForm extends StatelessWidget {
                     .checkIsValidate();
               },
               hintText: "Enter Email",
+              isLabel: true,
+              label: "Username / Email",
               controller: BlocProvider.of<SignInCubit>(context).emailController,
               textInputType: TextInputType.emailAddress),
-          const SizedBox(height: 5),
+          const SizedBox(height: 20),
           TextFormFieldComponent(
               onChanged: (value) {
                 BlocProvider.of<SignInButtonValidationCubit>(context)
                     .checkIsValidate();
               },
               textInputType: TextInputType.visiblePassword,
+              isLabel: true,
+              label: "Password",
               hintText: "Enter Password",
               isPassword: true,
               controller:
@@ -139,13 +143,13 @@ class RegisterHereTextButton extends StatelessWidget {
                 style: TextStyle(
                     color: Palette.black.withOpacity(0.5),
                     fontWeight: FontWeight.w500,
-                    fontSize: 13),
+                    fontSize: 14),
                 children: [
               TextSpan(
                 text: 'Register here',
                 style: TextStyle(
                   height: 1.5,
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w500,
                   color: Palette.black,
                 ),

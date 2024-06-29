@@ -63,7 +63,7 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
             child: Text(
               widget.label ?? '',
               style: const TextStyle(
-                color: Palette.primaryTextColor,
+                color: Palette.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),

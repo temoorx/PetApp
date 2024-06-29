@@ -48,20 +48,25 @@ class _SplashScreenState extends State<SplashScreen> {
     return Consumer<MyTheme>(
       builder: (context, theme, child) {
         this.theme = theme;
-        return MainScaffold(
-            isGradient: true,
-            body: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    AssetsConstants.logo,
-                    scale: 1.5,
-                  ),
+        return Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(AssetsConstants.backgroundImage),
+                  fit: BoxFit.cover,
                 ),
               ),
-            ));
+            ),
+            Center(
+              child: Image.asset(
+                AssetsConstants.newSplashLogo,
+                width: 200,
+                height: 200,
+              ),
+            ),
+          ],
+        );
       },
     );
   }

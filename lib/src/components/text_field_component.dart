@@ -68,9 +68,7 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
           padding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
           child: TextFormField(
             keyboardType: widget.textInputType,
-            strutStyle: const StrutStyle(
-              height: 1.3,
-            ),
+            strutStyle: const StrutStyle(),
             maxLines: widget.maxLines,
             onChanged: (value) {
               widget.onChanged(value);
@@ -83,7 +81,8 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
             controller: widget.controller,
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   fontFamily: FontConstants.gilroyMedium,
-                  color: Palette.white,
+                  color: Palette.black,
+                  height: 1,
                 ),
             obscureText: widget.isPassword == true ? showPassword : false,
             decoration: InputDecoration(
@@ -94,30 +93,11 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
                             showPassword = !showPassword;
                           });
                         },
-                        icon: ShaderMask(
-                          shaderCallback: (Rect bounds) {
-                            return const LinearGradient(
-                              colors: [
-                                Color(0xff94783E),
-                                Color(0xffF3EDA6),
-                                Color(0xffF8FAE5),
-                                Color(0xffFFE2BE),
-                                Color(0xffD5BE88),
-                                Color(0xffF8FAE5),
-                                Color(0xffD5BE88),
-                              ], // Gradient colors
-                              begin:
-                                  Alignment.topLeft, // Gradient start position
-                              end: Alignment
-                                  .bottomRight, // Gradient end position
-                            ).createShader(bounds);
-                          },
-                          child: Icon(
-                            showPassword
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility,
-                            color: Palette.bgColorLight,
-                          ),
+                        icon: Icon(
+                          showPassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility,
+                          color: Palette.black,
                         ))
                     : widget.suffixIcon,
                 focusColor: getThemeColor(context),
@@ -127,40 +107,33 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
                 hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
                     fontWeight: FontWeight.w400,
                     fontSize: 14,
-                    color: Palette.white),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: widget.borderColor ?? Palette.borderColorFields,
-                        width: widget.stroke ?? 2.2),
-                    borderRadius:
-                        BorderRadius.circular(widget.borderRadius ?? 20)),
-                errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: widget.borderColor ?? Palette.borderColorFields,
-                        width: widget.stroke ?? 2.2),
-                    borderRadius:
-                        BorderRadius.circular(widget.borderRadius ?? 20)),
-                disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: widget.borderColor ?? Palette.borderColorFields,
-                        width: widget.stroke ?? 2.2),
-                    borderRadius:
-                        BorderRadius.circular(widget.borderRadius ?? 20)),
-                focusedBorder: OutlineInputBorder(
+                    color: Palette.black),
+                enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: widget.borderColor ?? Palette.borderColorFields,
-                      width: widget.stroke ?? 2.2),
-                  borderRadius:
-                      BorderRadius.circular(widget.borderRadius ?? 20),
+                      color: widget.borderColor ?? Palette.black,
+                      width: widget.stroke ?? 1.0),
                 ),
-                border: OutlineInputBorder(
+                errorBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: widget.borderColor ?? Palette.black,
+                      width: widget.stroke ?? 1.0),
+                ),
+                disabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: widget.borderColor ?? Palette.black,
+                      width: widget.stroke ?? 1.0),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: widget.borderColor ?? Palette.black,
+                      width: widget.stroke ?? 1.0),
+                ),
+                border: UnderlineInputBorder(
                     borderSide: BorderSide(
-                        color: widget.borderColor ?? Palette.borderColorFields,
-                        width: widget.stroke ?? 2.2),
-                    borderRadius:
-                        BorderRadius.circular(widget.borderRadius ?? 20))),
+                        color: widget.borderColor ?? Palette.black,
+                        width: widget.stroke ?? 1))),
           ),
-        ),
+        )
       ],
     );
   }

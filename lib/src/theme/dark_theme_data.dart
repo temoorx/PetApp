@@ -19,25 +19,8 @@ ThemeData darkThemeData(MyTheme theme) {
               fontSize: 16, color: darken(theme.getColor(), 0.35));
         }),
         shape: WidgetStateProperty.resolveWith((states) {
-          return DecoratedOutlinedBorder(
-            shadow: [
-              GradientShadow(
-                  gradient: LinearGradient(
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.topRight,
-                      colors: [
-                        const Color(0xff62CDCB).withOpacity(0.5),
-                        const Color(0xff4599DB).withOpacity(0.5),
-                      ]),
-                  blurRadius: 12,
-                  offset: const Offset(0, 14))
-            ],
-            backgroundGradient: const LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [Color(0xff62CDCB), Color(0xff4599DB)]),
-            child:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          return RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(90),
           );
         }),
         fixedSize: const WidgetStatePropertyAll(Size.fromHeight(60)),

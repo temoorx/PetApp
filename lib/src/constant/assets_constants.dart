@@ -33,9 +33,6 @@ class AssetsConstants {
   static const String failedDialogImage =
       'assets/images/failed_dioalog_image.png';
   static const String splashLogo = 'assets/images/splash_logo.svg';
-  static const String splashLogoImage = 'assets/images/splash_logo.png';
-  static const String onboardingImage =
-      'assets/images/onboarding_doctorImage.png';
   static const String logo = 'assets/images/logo.png';
   static const String crouselImage1 = 'assets/images/crousel_image.png';
   static const String crouselImage2 = 'assets/images/crousel_image2.png';
@@ -87,6 +84,10 @@ class AssetsConstants {
   static const String logfilledIcon = 'assets/icon/logfilled.png';
 
   static const String profileIcon = 'assets/icon/profileIcon.png';
+
+  static const String newSplashLogo = 'assets/images/splash_logo.png';
+
+  static const String backgroundImage = 'assets/images/background_image.jpg';
 
   static const String profilefilledIcon = 'assets/icon/profilefilled.png';
   static const String billIcon = 'assets/icon/bill.png';
@@ -169,7 +170,7 @@ class AssetsConstants {
 
   static const String appLogo = "assets/images/logo.png";
 
-  static const String profileImage='assets/images/profile.jpeg';
+  static const String profileImage = 'assets/images/profile.jpeg';
 
   // static String more;
 }

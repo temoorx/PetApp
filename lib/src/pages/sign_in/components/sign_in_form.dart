@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_app_test/src/components/text_field_component.dart';
+import 'package:your_app_test/src/pages/sign_in/components/primary_button.dart';
 import 'package:your_app_test/src/theme/palette.dart';
 import 'package:your_app_test/src/constant/route_constants.dart';
 import 'package:your_app_test/src/constant/shared_preference_constants.dart';
@@ -14,7 +15,6 @@ import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_button_validation_
 
 import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_cubit.dart';
 import 'package:your_app_test/src/route/app_router.dart';
-import 'package:your_app_test/src/util/logger_utils.dart';
 import 'package:your_app_test/src/util/shared_preferences_util.dart';
 
 class SignInForm extends StatelessWidget {
@@ -35,9 +35,6 @@ class SignInForm extends StatelessWidget {
                 BlocProvider.of<SignInButtonValidationCubit>(context)
                     .checkIsValidate();
               },
-              borderRadius: 12,
-              borderColor: Palette.white.withOpacity(0.00),
-              fillColor: Palette.white.withOpacity(0.06),
               hintText: "Enter Email",
               controller: BlocProvider.of<SignInCubit>(context).emailController,
               textInputType: TextInputType.emailAddress),
@@ -47,11 +44,8 @@ class SignInForm extends StatelessWidget {
                 BlocProvider.of<SignInButtonValidationCubit>(context)
                     .checkIsValidate();
               },
-              borderRadius: 12,
               textInputType: TextInputType.visiblePassword,
               hintText: "Enter Password",
-              borderColor: Palette.white.withOpacity(0.00),
-              fillColor: Palette.white.withOpacity(0.06),
               isPassword: true,
               controller:
                   BlocProvider.of<SignInCubit>(context).passwordController),
@@ -91,7 +85,22 @@ class SignInButton extends StatelessWidget {
               return null;
             }),
         builder: (context, state) => state.maybeWhen(
-            loading: () => const CircularProgressIndicator(),
+            loading: () => PrimaryButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Palette.white),
+                    ),
+                    const SizedBox(width: 10),
+                    Text("Loading...",
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Palette.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700))
+                  ],
+                ),
+                onPressed: () {}),
             loaded: (token) => SignUpButtonVadationState(
                 formKey: formKey, title: StringConstants.login),
             error: (message) {
@@ -109,21 +118,8 @@ class SignInButton extends StatelessWidget {
                             .copyWith(color: Palette.redIndicatorColor))
                   ]);
             },
-            orElse: () => ElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      context.read<SignInCubit>().signIn();
-                    }
-                  },
-                  child: Text(
-                    StringConstants.login,
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Palette.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                  ),
-                )));
+            orElse: () => SignUpButtonVadationState(
+                formKey: formKey, title: StringConstants.login)));
   }
 }
 
@@ -140,19 +136,19 @@ class RegisterHereTextButton extends StatelessWidget {
         },
         child: RichText(
             text: TextSpan(
-                text: 'No account? ',
-                style: const TextStyle(
-                    color: Palette.white,
+                text: 'Don’t have an account? ',
+                style: TextStyle(
+                    color: Palette.black.withOpacity(0.5),
                     fontWeight: FontWeight.w500,
                     fontSize: 13),
                 children: [
               TextSpan(
                 text: 'Register here',
                 style: TextStyle(
-                  decoration: TextDecoration.underline,
                   height: 1.5,
                   fontSize: 13.0,
                   fontWeight: FontWeight.w500,
+                  color: Palette.black,
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
@@ -185,9 +181,13 @@ class SignUpButtonVadationState extends StatelessWidget {
         return state.maybeWhen(
           orElse: () => Container(),
           enabled: () {
-            return AppButton(
-              enabled: true,
-              title: title,
+            return PrimaryButton(
+              child: Text(title,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: Palette.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      )),
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   context.read<SignInCubit>().signIn();
@@ -196,9 +196,13 @@ class SignUpButtonVadationState extends StatelessWidget {
             );
           },
           disabled: () {
-            return AppButton(
-              enabled: false,
-              title: title,
+            return PrimaryButton(
+              child: Text(title,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: Palette.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      )),
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   context.read<SignInCubit>().signIn();
@@ -209,64 +213,5 @@ class SignUpButtonVadationState extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class AppButton extends StatelessWidget {
-  const AppButton({
-    super.key,
-    required this.onPressed,
-    required this.title,
-    required this.enabled,
-  });
-
-  final VoidCallback onPressed;
-  final String title;
-  final bool enabled;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        ElevatedButton(
-            autofocus: false,
-            style: enabled == true ? null : disableStyle(),
-            onPressed: enabled == true ? () => onPressed() : null,
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: Palette.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-            )),
-        Text(
-          title,
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: Palette.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-        )
-      ],
-    );
-  }
-
-  ButtonStyle disableStyle() {
-    return ButtonStyle(
-        shape: WidgetStateProperty.resolveWith((states) {
-          return DecoratedOutlinedBorder(
-              backgroundGradient: LinearGradient(
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                  colors: [
-                    const Color(0xff62CDCB).withOpacity(0.5),
-                    const Color(0xff4599DB).withOpacity(0.5)
-                  ]),
-              child: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)));
-        }),
-        backgroundColor: const WidgetStatePropertyAll(Colors.transparent));
   }
 }

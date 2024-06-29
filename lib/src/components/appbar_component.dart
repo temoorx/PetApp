@@ -91,9 +91,6 @@ class AppBarcomponent extends StatelessWidget {
                   )
                 : Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: Image.asset(
-                      AssetsConstants.splashLogoImage,
-                    ),
                   ),
             title: isBackAppBar
                 ? SizedBox(

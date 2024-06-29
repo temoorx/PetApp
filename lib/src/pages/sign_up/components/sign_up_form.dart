@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_app_test/src/components/app_loader.dart';
 import 'package:your_app_test/src/components/text_field_component.dart';
+import 'package:your_app_test/src/pages/sign_in/components/primary_button.dart';
 import 'package:your_app_test/src/theme/palette.dart';
 import 'package:your_app_test/src/constant/string_constants.dart';
 import 'package:your_app_test/src/constant/toast_component.dart';
@@ -33,8 +34,6 @@ class _SignUpFormState extends State<SignUpForm> {
           TextFormFieldComponent(
             onChanged: (value) {},
             borderRadius: 12,
-            borderColor: Palette.white.withOpacity(0.00),
-            fillColor: Palette.white.withOpacity(0.06),
             controller: _emailController,
             hintText: 'Enter Email',
             textInputType: TextInputType.emailAddress,
@@ -42,17 +41,6 @@ class _SignUpFormState extends State<SignUpForm> {
           TextFormFieldComponent(
             onChanged: (value) {},
             borderRadius: 12,
-            borderColor: Palette.white.withOpacity(0.00),
-            fillColor: Palette.white.withOpacity(0.06),
-            controller: _firstNameController,
-            hintText: 'Create Username',
-            textInputType: TextInputType.name,
-          ),
-          TextFormFieldComponent(
-            onChanged: (value) {},
-            borderRadius: 12,
-            borderColor: Palette.white.withOpacity(0.00),
-            fillColor: Palette.white.withOpacity(0.06),
             controller: _passwordController,
             hintText: 'Password',
             isPassword: true,
@@ -61,8 +49,6 @@ class _SignUpFormState extends State<SignUpForm> {
           TextFormFieldComponent(
             onChanged: (value) {},
             borderRadius: 12,
-            borderColor: Palette.white.withOpacity(0.00),
-            fillColor: Palette.white.withOpacity(0.06),
             controller: _confirmPasswordController,
             hintText: 'Confirm Password',
             isPassword: true,
@@ -74,7 +60,7 @@ class _SignUpFormState extends State<SignUpForm> {
               orElse: () => Stack(
                 alignment: Alignment.center,
                 children: [
-                  ElevatedButton(
+                  PrimaryButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           if (_confirmPasswordController.text ==
@@ -113,7 +99,7 @@ class _SignUpFormState extends State<SignUpForm> {
               loading: () => Stack(
                 alignment: Alignment.center,
                 children: [
-                  ElevatedButton(
+                  PrimaryButton(
                       onPressed: () {},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -166,7 +152,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      ElevatedButton(
+                      PrimaryButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               if (_confirmPasswordController.text ==
@@ -231,7 +217,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 ToastComponent2(context)
                     .showToast(context, 'Account created successfully');
                 return Navigator.pop(context);
-              },
+              }
             ),
           ),
           const SizedBox(height: 20),

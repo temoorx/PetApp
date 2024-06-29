@@ -13,9 +13,8 @@ class AlreadyAccount extends StatelessWidget {
           TextSpan(
             text: 'Already have an account? ',
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  decoration: TextDecoration.underline,
                   decorationColor: Palette.primaryColor,
-                  color: Palette.primaryColor,
+                  color: Palette.black,
                 ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {

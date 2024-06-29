@@ -15,6 +15,7 @@ class SignInScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
+      backgroundColor: Palette.white,
       body: const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
@@ -23,18 +24,24 @@ class SignInScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  SizedBox(
-                    width: 20,
-                  ),
                   Text(
-                    "Login",
+                    "Hello there 👋",
                     style: TextStyle(
-                      color: Palette.white,
+                      color: Palette.black,
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 10),
+              Text(
+                "Welcome back to your account",
+                style: TextStyle(
+                  color: Palette.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
               SignInForm(),
             ],

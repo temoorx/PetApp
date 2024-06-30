@@ -140,19 +140,13 @@ class RegisterHereTextButton extends StatelessWidget {
         child: RichText(
             text: TextSpan(
                 text: 'Don’t have an account? ',
-                style: TextStyle(
-                    color: Palette.black.withOpacity(0.5),
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(),
                 children: [
               TextSpan(
                 text: 'Register here',
-                style: TextStyle(
-                  height: 1.5,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w500,
-                  color: Palette.black,
-                ),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     context.router.pushNamed(RouteConstants.signUpRoute);
@@ -175,45 +169,17 @@ class SignUpButtonVadationState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignInButtonValidationCubit,
-        SignInButtonValidationState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-      builder: (context, state) {
-        return state.maybeWhen(
-          orElse: () => Container(),
-          enabled: () {
-            return PrimaryButton(
-              child: Text(title,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: Palette.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      )),
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  context.read<SignInCubit>().signIn();
-                }
-              },
-            );
-          },
-          disabled: () {
-            return PrimaryButton(
-              child: Text(title,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: Palette.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      )),
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  context.read<SignInCubit>().signIn();
-                }
-              },
-            );
-          },
-        );
+    return PrimaryButton(
+      child: Text(title,
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Palette.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              )),
+      onPressed: () {
+        if (formKey.currentState!.validate()) {
+          context.read<SignInCubit>().signIn();
+        }
       },
     );
   }

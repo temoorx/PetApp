@@ -8,6 +8,26 @@ import 'package:your_app_test/src/theme/theme.dart';
 ThemeData darkThemeData(MyTheme theme, {Color? color}) {
   return ThemeData(
     useMaterial3: true,
+    iconTheme: const IconThemeData(color: Palette.white),
+    inputDecorationTheme: const InputDecorationTheme(
+      filled: true,
+      fillColor: Palette.black,
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.white),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.white),
+      ),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.white),
+      ),
+      errorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.white),
+      ),
+      focusedErrorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.white),
+      ),
+    ),
     colorSchemeSeed: color ?? theme.getColor(),
     brightness: Brightness.light,
     scaffoldBackgroundColor: Palette.black,
@@ -40,7 +60,7 @@ ThemeData darkThemeData(MyTheme theme, {Color? color}) {
     drawerTheme: const DrawerThemeData(
         backgroundColor: Colors.transparent, elevation: 0),
     buttonTheme: ButtonThemeData(
-      buttonColor: theme.getColor(),
+      buttonColor: Palette.black,
       textTheme: ButtonTextTheme.accent,
       height: 70,
       shape: RoundedRectangleBorder(

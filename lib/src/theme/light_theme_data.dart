@@ -6,6 +6,25 @@ import 'package:your_app_test/src/theme/theme.dart';
 
 ThemeData lightThemeData(MyTheme theme) {
   return ThemeData(
+    inputDecorationTheme: const InputDecorationTheme(
+      filled: true,
+      fillColor: Palette.white,
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.black),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.black),
+      ),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.black),
+      ),
+      errorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.black),
+      ),
+      focusedErrorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Palette.black),
+      ),
+    ),
     drawerTheme: const DrawerThemeData(
         backgroundColor: Palette.bgColorLight, elevation: 0),
     useMaterial3: true,

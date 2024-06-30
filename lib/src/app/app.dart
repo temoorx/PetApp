@@ -15,6 +15,7 @@ import 'package:your_app_test/src/pages/sign_in/cubit/sign_in_cubit.dart';
 import 'package:your_app_test/src/pages/sign_up/cubit/sign_up_cubit.dart';
 
 import 'package:your_app_test/src/route/app_router.dart';
+import 'package:your_app_test/src/theme/dark_theme_data.dart';
 import 'package:your_app_test/src/theme/light_theme_data.dart';
 import 'package:your_app_test/src/theme/theme.dart';
 
@@ -54,7 +55,7 @@ class App extends StatelessWidget {
               debugShowMaterialGrid: false,
               debugShowCheckedModeBanner: false,
               themeMode: theme.currentTheme(),
-              darkTheme: lightThemeData(theme),
+              darkTheme: darkThemeData(theme),
               title: F.title,
               theme: lightThemeData(theme),
             ),

@@ -51,8 +51,7 @@ FutureOr<void> main() async {
         create: (_) => MyTheme()
           ..currentTheme()
           ..getColor()
-          ..getStorageTheme()
-          ..switchTheme(),
+          ..getStorageTheme(),
         child: const App(),
       ),
     ),

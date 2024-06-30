@@ -63,7 +63,6 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
             child: Text(
               widget.label ?? '',
               style: const TextStyle(
-                color: Palette.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),
@@ -86,57 +85,31 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
             controller: widget.controller,
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   fontFamily: FontConstants.gilroyMedium,
-                  color: Palette.black,
                   height: 1,
                 ),
             obscureText: widget.isPassword == true ? showPassword : false,
             decoration: InputDecoration(
-                suffixIcon: widget.isPassword == true
-                    ? IconButton(
-                        onPressed: () {
-                          setState(() {
-                            showPassword = !showPassword;
-                          });
-                        },
-                        icon: Icon(
-                          showPassword
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility,
-                          color: Palette.black,
-                        ))
-                    : widget.suffixIcon,
-                focusColor: getThemeColor(context),
-                filled: true,
-                fillColor: widget.fillColor ?? Palette.white,
-                hintText: widget.hintText,
-                hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
+              suffixIcon: widget.isPassword == true
+                  ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          showPassword = !showPassword;
+                        });
+                      },
+                      icon: Icon(
+                        showPassword
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility,
+                      ))
+                  : widget.suffixIcon,
+              focusColor: getThemeColor(context),
+              filled: true,
+              hintText: widget.hintText,
+              hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
                     fontWeight: FontWeight.w400,
                     fontSize: 14,
-                    color: Palette.black),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: widget.borderColor ?? Palette.black,
-                      width: widget.stroke ?? 1.0),
-                ),
-                errorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: widget.borderColor ?? Palette.black,
-                      width: widget.stroke ?? 1.0),
-                ),
-                disabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: widget.borderColor ?? Palette.black,
-                      width: widget.stroke ?? 1.0),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: widget.borderColor ?? Palette.black,
-                      width: widget.stroke ?? 1.0),
-                ),
-                border: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: widget.borderColor ?? Palette.black,
-                        width: widget.stroke ?? 1))),
+                  ),
+            ),
           ),
         )
       ],

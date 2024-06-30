@@ -5,7 +5,7 @@ import 'package:your_app_test/src/di/injector.dart';
 import 'package:your_app_test/src/util/shared_preferences_util.dart';
 
 class MyTheme with ChangeNotifier {
-  static bool isDark = true;
+  static bool isDark = false;
   static Color color = Palette.primaryColor;
   void getStorageTheme() async {
     isDark = (await getIt

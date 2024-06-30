@@ -10,7 +10,6 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -25,11 +24,12 @@ class SignUpScreen extends StatelessWidget {
                 child: const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(Icons.arrow_back_ios, color: Palette.black),
+                    Icon(
+                      Icons.arrow_back_ios,
+                    ),
                     Text(
                       'Back',
                       style: TextStyle(
-                        color: Palette.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                       ),
@@ -50,7 +50,6 @@ class SignUpScreen extends StatelessWidget {
                   Text(
                     "Hello there 👋",
                     style: const TextStyle(
-                      color: Palette.black,
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                     ),
@@ -59,7 +58,6 @@ class SignUpScreen extends StatelessWidget {
                   Text(
                     "Create an account to get started",
                     style: const TextStyle(
-                      color: Palette.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),

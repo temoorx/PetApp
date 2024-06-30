@@ -10,7 +10,7 @@ ThemeData darkThemeData(MyTheme theme, {Color? color}) {
     useMaterial3: true,
     colorSchemeSeed: color ?? theme.getColor(),
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Palette.bgColorDark,
+    scaffoldBackgroundColor: Palette.black,
     appBarTheme: AppBarTheme(
         backgroundColor: darken(theme.getColor(), 0.35),
         foregroundColor: Palette.white),
